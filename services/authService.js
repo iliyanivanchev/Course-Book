@@ -25,6 +25,7 @@ exports.login = async ({ email, password }) => {
     };
 
     const isValid = await bcrypt.compare(password, user.password);
+
     if (!isValid) {
         throw new Error('Invalid email or password');
     };
@@ -35,7 +36,7 @@ exports.login = async ({ email, password }) => {
         email: user.email,
 
     }
-    const token = await jwt.sign(payload, SECRET, { expiresIn: '2h' });
+    const token = await jwt.sign(payload, SECRET, { expiresIn: '4h' });
 
     return token;
 };
