@@ -37,7 +37,7 @@ router.post('/login', isGuest, async (req, res) => {
     }
 });
 
-router.get('/logout', isGuest, isAuth, (req, res) => {
+router.get('/logout', isAuth, (req, res) => {
     res.clearCookie('auth');
     res.redirect('/');
 });

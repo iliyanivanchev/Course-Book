@@ -36,7 +36,6 @@ exports.isAuth = (req, res, next) => {
 
 exports.isGuest = (req, res, next) => {
     if (req.user) {
-        res.clearCookie('auth');
         return res.redirect('/');
     };
 
