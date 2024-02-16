@@ -8,6 +8,6 @@ exports.getErrorMessage = (err) => {
         } else if (err instanceof Error) {
             message = err.message;
         };
-
+        
         return message;
 };

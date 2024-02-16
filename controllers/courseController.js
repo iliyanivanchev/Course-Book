@@ -14,9 +14,18 @@ router.post('/create', isAuth, async (req, res) => {
 
     try {
         await courseService.create(userId, courseData);
-        res.redirect('courses/allCourses');
+        res.redirect('/courses/catalog');
     } catch (err) {
         res.render('courses/create', { ...courseData, error: getErrorMessage(err) });
+    }
+});
+
+router.get('/catalog', async (req, res) => {
+    try {
+        const courses = await courseService.getAll().lean();
+        res.render('courses/catalog', { courses });
+    } catch (err) {
+        res.render('courses/catalog', { error: getErrorMessage(err) });
     }
 });
 
