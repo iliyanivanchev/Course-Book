@@ -4,11 +4,11 @@ const { isGuest, isAuth } = require('../middlewares/authMiddlewares');
 const authService = require('../services/authService');
 const { getErrorMessage } = require('../utils/errorUtil');
 
-router.get('/register', (req, res) => {
+router.get('/register', isGuest, (req, res) => {
     res.render('auth/register');
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', isGuest, async (req, res) => {
     const userData = req.body;
 
     try {
