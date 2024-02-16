@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const { isGuest } = require('../middlewares/authMiddlewares');
 const authService = require('../services/authService');
 const { getErrorMessage } = require('../utils/errorUtil');
 
@@ -19,11 +20,11 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', isGuest, (req, res) => {
     res.render('auth/login');
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', isGuest, async (req, res) => {
     const loginData = req.body;
     
     try {
