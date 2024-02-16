@@ -29,4 +29,11 @@ router.get('/catalog', async (req, res) => {
     }
 });
 
+router.get('/:courseId/details', async (req, res) => {
+    const courseId = req.params.courseId;
+    const course = await courseService.getOneDetailed(courseId).lean();
+    console.log(course);
+    res.render('courses/details', { ...course });
+});
+
 module.exports = router;
